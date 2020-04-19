@@ -1,0 +1,68 @@
+{
+  "name": "ze-delivery-test",
+  "version": "1.0.0",
+  "description": "To run this software you must already have docker and docker-compose installed then:\r   - setup .env file following the .env.sample file: \r >   NODE_PORT=8030 -- port node application will run \\ \r >   SECRET=SHHHTESTING --- JWT secret\r   - setup your cors whitelist domain inside: src/config/cors.json , keep the pattern \r   ```\r   {\r   \"whitelist\":[\r     \"www.domain.com.br\",\r     \"localhost\",\r     \"127.0.0.1\",\r     yourwhitelisteddomain,\r     ]",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start:dev": "nodemon",
+    "build": "tsc",
+    "start": "node ./build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucassantos94/Forum-APP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucassantos94/Forum-APP/issues"
+  },
+  "homepage": "https://github.com/lucassantos94/Forum-APP#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.3",
+    "@types/hapi__joi": "^16.0.12",
+    "@types/helmet": "0.0.45",
+    "@types/jest": "^25.1.4",
+    "@types/mongoose": "^5.7.8",
+    "@types/morgan": "^1.9.0",
+    "@types/node": "^13.9.5",
+    "@types/uuid": "^7.0.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "mongoose": "^5.9.6",
+    "morgan": "^1.10.0",
+    "typescript": "^3.8.3",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/faker": "^4.1.11",
+    "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "faker": "^4.1.0",
+    "jest": "^25.2.3",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.8.1"
+  }
+}
