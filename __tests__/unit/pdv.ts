@@ -5,7 +5,7 @@ let pdv: {
   tradingName: string;
   ownerName: string;
   document: string;
-  coverageArea: [coordinate[], coordinate[]?][];
+  coverageArea: coordinate[][][];
   address: coordinate;
 };
 let id: string;

@@ -1,4 +1,4 @@
-export type coordinate = [number, number];
+export type coordinate = number[];
 
 abstract class GeoJson<T> {
   public readonly type: string;
@@ -7,10 +7,14 @@ abstract class GeoJson<T> {
     this.type = type;
     this.coordinates = coordinates;
   }
+
+  get props(): { type: string; coordinates: T } {
+    return { type: this.type, coordinates: this.coordinates };
+  }
 }
 
-export class Polygon extends GeoJson<[coordinate[], coordinate[]?]> {
-  constructor(coordinates: [coordinate[], coordinate[]?]) {
+export class Polygon extends GeoJson<coordinate[][]> {
+  constructor(coordinates: coordinate[][]) {
     super(coordinates, 'Polygon');
   }
 }
@@ -20,8 +24,8 @@ export class Point extends GeoJson<coordinate> {
   }
 }
 
-export class MultiPolygon extends GeoJson<[coordinate[], coordinate[]?][]> {
-  constructor(coordinates: [coordinate[], coordinate[]?][]) {
+export class MultiPolygon extends GeoJson<coordinate[][][]> {
+  constructor(coordinates: coordinate[][][]) {
     super(coordinates, 'MultiPolygon');
   }
 }

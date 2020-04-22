@@ -1,12 +1,12 @@
 import { v4 as uuid } from 'uuid';
-import { MultiPolygon, Point, coordinate } from './geojson';
+import { MultiPolygon, Point } from './geojson';
 import { Either, fail, success } from '../../../shared/types/either';
 interface PDVProps {
   tradingName: string;
   ownerName: string;
   document: string;
   coverageArea: MultiPolygon;
-  addres: Point;
+  address: Point;
 }
 
 export class PDV {
@@ -16,6 +16,54 @@ export class PDV {
   private constructor(props: PDVProps, id: string) {
     this.#props = props;
     this.id = id;
+  }
+
+  public get props(): {
+    tradingName: string;
+    ownerName: string;
+    document: string;
+    coverageArea: {
+      type: string;
+      coordinates: number[][][][];
+    };
+    address: {
+      type: string;
+      coordinates: number[];
+    };
+  } {
+    return {
+      tradingName: this.tradingName,
+      ownerName: this.ownerName,
+      document: this.document,
+      coverageArea: this.coverageArea,
+      address: this.address,
+    };
+  }
+
+  public get tradingName(): string {
+    return this.#props.tradingName;
+  }
+
+  public get ownerName(): string {
+    return this.#props.ownerName;
+  }
+
+  public get document(): string {
+    return this.#props.document;
+  }
+
+  public get coverageArea(): {
+    type: string;
+    coordinates: number[][][][];
+  } {
+    return this.#props.coverageArea.props;
+  }
+
+  public get address(): {
+    type: string;
+    coordinates: number[];
+  } {
+    return this.#props.address;
   }
 
   public static Create(
@@ -29,8 +77,8 @@ export class PDV {
       tradingName: string;
       ownerName: string;
       document: string;
-      coverageArea: [coordinate[], coordinate[]?][];
-      address: coordinate;
+      coverageArea: number[][][][];
+      address: number[];
     },
     id?: string,
   ): Either<string, PDV> {
@@ -43,7 +91,7 @@ export class PDV {
         new PDV(
           {
             coverageArea: validCoverage,
-            addres: validAddress,
+            address: validAddress,
             document,
             ownerName,
             tradingName,

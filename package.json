@@ -4,8 +4,8 @@
   "description": "To run this software you must already have docker and docker-compose installed then:\r   - setup .env file following the .env.sample file: \r >   NODE_PORT=8030 -- port node application will run \\ \r >   SECRET=SHHHTESTING --- JWT secret\r   - setup your cors whitelist domain inside: src/config/cors.json , keep the pattern \r   ```\r   {\r   \"whitelist\":[\r     \"www.domain.com.br\",\r     \"localhost\",\r     \"127.0.0.1\",\r     yourwhitelisteddomain,\r     ]",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch --runInBand",
     "start:dev": "nodemon",
     "build": "tsc",
     "start": "node ./build"
@@ -59,6 +59,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "faker": "^4.1.0",
     "jest": "^25.2.3",
+    "mongodb-memory-server": "^6.5.2",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
     "supertest": "^4.0.2",
