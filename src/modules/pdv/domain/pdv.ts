@@ -83,8 +83,8 @@ export class PDV {
     id?: string,
   ): Either<string, PDV> {
     try {
-      const isNew = !!id;
-      const validId = isNew ? (id as string) : uuid();
+      const isNew = !!id === false;
+      const validId = isNew ? uuid() : (id as string);
       const validCoverage = new MultiPolygon(coverageArea);
       const validAddress = new Point(address);
       return success(

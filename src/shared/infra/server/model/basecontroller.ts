@@ -6,7 +6,7 @@ export abstract class BaseControler<T> {
     try {
       await this.exec(req, res);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       if (error.isJoi) {
         BaseControler.badRequest(res);
       } else {
@@ -25,7 +25,7 @@ export abstract class BaseControler<T> {
   }
 
   public static noContent<T>(res: Response): Response<T> {
-    return res.status(201).send();
+    return res.status(204).send();
   }
 
   public static badRequest<T>(res: Response): Response<T> {
