@@ -16,7 +16,7 @@ afterAll(async () => {
   await clearDatabase();
   await closeDatabase();
 });
-describe('CreatePDV Execute', () => {
+describe('GetByIdController Execute', () => {
   describe('returns 204 if', () => {
     test('ID not exists', (done) => {
       request.get(`/pdv/${uuid()}`).expect(204, done);
