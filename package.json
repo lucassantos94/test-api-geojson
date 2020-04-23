@@ -1,7 +1,7 @@
 {
   "name": "ze-delivery-test",
   "version": "1.0.0",
-  "description": "To run this software you must already have docker and docker-compose installed then:\r   - setup .env file following the .env.sample file: \r >   NODE_PORT=8030 -- port node application will run \\ \r >   SECRET=SHHHTESTING --- JWT secret\r   - setup your cors whitelist domain inside: src/config/cors.json , keep the pattern \r   ```\r   {\r   \"whitelist\":[\r     \"www.domain.com.br\",\r     \"localhost\",\r     \"127.0.0.1\",\r     yourwhitelisteddomain,\r     ]",
+  "description": "Sample crud app with express, typescript mongoose using geojson objects",
   "main": ".eslintrc.js",
   "scripts": {
     "test": "jest --runInBand",
