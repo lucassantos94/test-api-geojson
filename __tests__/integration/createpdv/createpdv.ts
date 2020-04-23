@@ -1,8 +1,7 @@
-import { connect, clearDatabase, closeDatabase } from '../utils/dbconnection';
-import PDVModel from '../../src/shared/infra/database/mongoose/model/pdv';
-import { Either } from '../../src/shared/types/either';
-import { pdvs } from '../mock/mockdata.json';
-import { createPDV } from '../../src/modules/pdv/usecases/createpdv';
+import { connect, clearDatabase, closeDatabase } from '../../utils/dbconnection';
+import PDVModel from '../../../src/shared/infra/database/mongoose/model/pdv';
+import { pdvs } from '../../mock/mockdata.json';
+import { createPDV } from '../../../src/modules/pdv/usecases/createpdv';
 const pdv = pdvs[0];
 beforeAll(async () => {
   await connect();

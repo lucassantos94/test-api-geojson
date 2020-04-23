@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-export abstract class BaseControler {
-  abstract exec(req: Request, res: Response): Promise<Response<unknown>>;
+export abstract class BaseControler<T> {
+  abstract exec(req: Request, res: Response): Promise<Response<T>>;
 
   public async executeImpl(req: Request, res: Response): Promise<void> {
     try {
       await this.exec(req, res);
     } catch (error) {
-      //  console.error(error);
+      console.error(error);
       if (error.isJoi) {
         BaseControler.badRequest(res);
       } else {
@@ -16,23 +16,23 @@ export abstract class BaseControler {
     }
   }
 
-  public static OK(res: Response): Response<unknown> {
+  public static OK<T>(res: Response): Response<T> {
     return res.status(200).send();
   }
 
-  public static sendJson(status: number, res: Response, data?: unknown): Response<unknown> {
+  public static sendJson<T, U>(status: number, res: Response, data?: U): Response<T> {
     return res.status(status).send({ data });
   }
 
-  public static noContent(res: Response): Response<unknown> {
+  public static noContent<T>(res: Response): Response<T> {
     return res.status(201).send();
   }
 
-  public static badRequest(res: Response): Response<unknown> {
+  public static badRequest<T>(res: Response): Response<T> {
     return res.status(400).send();
   }
 
-  public static Unathorized(res: Response): Response<unknown> {
+  public static Unathorized<T>(res: Response): Response<T> {
     return res.status(401).send();
   }
 }
