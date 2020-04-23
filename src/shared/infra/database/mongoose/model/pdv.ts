@@ -15,7 +15,7 @@ export interface IPDVModel extends Document {
   };
 }
 
-const UserSchema = new Schema({
+const pdvSchema = new Schema({
   id: {
     type: String,
     default: uuid,
@@ -51,10 +51,15 @@ const UserSchema = new Schema({
       required: true,
     },
     coordinates: {
+      index: '2dsphere',
       type: [Number],
       required: true,
     },
   },
 });
 
-export default model<IPDVModel>('pdv', UserSchema);
+pdvSchema.index({ address: '2dsphere' });
+
+const pdvModel = model<IPDVModel>('pdv', pdvSchema);
+pdvModel.createIndexes();
+export default pdvModel;

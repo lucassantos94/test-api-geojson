@@ -11,5 +11,6 @@ export interface PDVProps {
 export interface IPDVRepo {
   getById(id: string): Promise<PDV | undefined>;
   create(pdv: PDV): Promise<PDV>;
+  getAllNearestByLocation(point: [number, number]): Promise<PDV | undefined>;
   getByDocument(document: string): Promise<PDV | undefined>;
 }

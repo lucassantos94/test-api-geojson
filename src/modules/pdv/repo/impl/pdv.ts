@@ -34,6 +34,30 @@ export class PDVRepo implements IPDVRepo {
     return pdv;
   }
 
+  async getAllNearestByLocation(point: [number, number]): Promise<PDV | undefined> {
+    let pdv: PDV | undefined;
+    try {
+      const nearestPDV = await this.#model
+        .find()
+        .where('address')
+        .near({ center: point, maxDistance: 50000, spherical: true })
+        .findOne()
+        .where('coverageArea')
+        .intersects({
+          type: 'Point',
+          coordinates: point,
+        });
+
+      if (nearestPDV) {
+        pdv = this.toDomain(nearestPDV.toObject());
+      }
+    } catch (error) {
+      return;
+    }
+
+    return pdv;
+  }
+
   public async getById(id: string): Promise<PDV | undefined> {
     let pdv: PDV | undefined;
     const retrievedPDV = await this.#model.findOne({ id }, null, { lean: true });
