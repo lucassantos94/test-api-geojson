@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: 'mongo:latest'
+    container_name: 'mongodb-container'
+    ports: 
+      - "27017-27019:27017-27019" 
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root2
+  mongo-seed:
+    image: 'mongo:latest'
+    volumes:
+      - ./seed:/seed
+    links: 
+      - "db"
+    command: mongoimport -u 'root' -p 'root2' --authenticationDatabase admin --collection pdvs --host db --db zedelivery --type json --file /seed/mockdata.json --jsonArray
+  node:
+    image: 'node'
+    container_name: 'nodejs-container'
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    links: 
+      - "db"
+    ports: 
+      - "${APP_PORT}:${NODE_PORT}" 
+    environment:
+      MONGO_HOST: db
+      MONGO_COLLECTION: zedelivery
+      MONGO_PORT: 27017
+      MONGO_USER: root
+      MONGO_PASS: root2
+      PORT: ${NODE_PORT}
+    command: npm run start
