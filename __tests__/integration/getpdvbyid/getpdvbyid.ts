@@ -14,7 +14,7 @@ afterAll(async () => {
   await clearDatabase();
   await closeDatabase();
 });
-describe('CreatePDV Execute', () => {
+describe('GetById Execute', () => {
   describe('returns Fail ', () => {
     test('ID not exists', async () => {
       const result = await getPDVByID.execute(uuid());
