@@ -1,4 +1,4 @@
-# Zé Delivery test 
+# test 
 
 ## Quick start
 To run this software you must already have docker and docker-compose installed then:
